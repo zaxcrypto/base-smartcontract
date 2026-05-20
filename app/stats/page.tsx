@@ -305,19 +305,21 @@ export default function StatsPage() {
           </div>
           
           {/* Quick Connect & Autofill block */}
-          <div className="flex items-center gap-3 scale-95 origin-right">
+          <div className="flex items-center gap-2 flex-nowrap">
             {isConnected && (
               <button
                 onClick={() => {
                   setSearchAddress(connectedAddress || '')
                   fetchStats(connectedAddress || '')
                 }}
-                className="px-3 py-1.5 text-4xs font-bold uppercase tracking-wider rounded-lg border border-[var(--border-primary)] bg-[var(--bg-primary)] text-[var(--accent-color)] hover:bg-[var(--accent-soft)] transition-colors focus:outline-none"
+                className="whitespace-nowrap px-3 py-2 text-[10px] font-extrabold uppercase tracking-wider rounded-xl border border-blue-500/20 bg-blue-500/5 text-blue-600 dark:text-blue-400 hover:bg-blue-500/10 transition-colors focus:outline-none h-9"
               >
                 Use Connected Wallet
               </button>
             )}
-            <ConnectButton showBalance={false} />
+            <div className="h-9 flex items-center">
+              <ConnectButton showBalance={false} />
+            </div>
           </div>
         </div>
 
