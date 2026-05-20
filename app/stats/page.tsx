@@ -3,9 +3,10 @@
 import { useState, useEffect } from 'react'
 import { useAccount } from 'wagmi'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
+import Link from 'next/link'
 import { 
   Trophy, Flame, Calendar, Activity, Coins, Layers, 
-  ArrowUpRight, Copy, Check, Search, Sparkles, ExternalLink, HelpCircle
+  ArrowUpRight, Copy, Check, Search, Sparkles, ExternalLink, HelpCircle, ArrowLeft
 } from 'lucide-react'
 import { PortalBackground } from '@/components/PortalBackground'
 
@@ -267,8 +268,19 @@ export default function StatsPage() {
       <div className="ambient-glow" />
 
       {/* Structural Column Wrapper */}
-      <div className="relative z-10 max-w-5xl w-full flex flex-col gap-8">
+      <div className="relative z-10 max-w-5xl w-full flex flex-col gap-4">
         
+        {/* Back to Home Button */}
+        <div className="w-full flex justify-start">
+          <Link 
+            href="/" 
+            className="inline-flex items-center gap-1.5 text-xs font-bold text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
+          >
+            <ArrowLeft className="h-3.5 w-3.5" />
+            Back to Home
+          </Link>
+        </div>
+
         {/* Curved Header Panel */}
         <div className="liquid-glass-card p-6 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-3">

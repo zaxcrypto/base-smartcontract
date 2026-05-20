@@ -112,7 +112,7 @@ export function TokenForm({ onSuccess }: TokenFormProps) {
         <input
           id="token-name"
           type="text"
-          placeholder="e.g. Base Protocol Token"
+          placeholder="e.g. 0xZax"
           maxLength={64}
           value={values.name}
           onChange={e => handleChange('name', e.target.value)}
@@ -130,12 +130,12 @@ export function TokenForm({ onSuccess }: TokenFormProps) {
           <label htmlFor="token-symbol" className="premium-label">
             Ticker Symbol <span className="text-rose-500">*</span>
           </label>
-          <span className="text-[10px] text-[var(--text-secondary)] font-medium">e.g. BPT</span>
+          <span className="text-[10px] text-[var(--text-secondary)] font-medium">e.g. 0XZAX</span>
         </div>
         <input
           id="token-symbol"
           type="text"
-          placeholder="e.g. DEPLOY"
+          placeholder="e.g. 0XZAX"
           maxLength={12}
           value={values.symbol}
           onChange={e => handleChange('symbol', e.target.value.toUpperCase())}
