@@ -6,7 +6,7 @@ import { ConnectButton } from '@rainbow-me/rainbowkit'
 import Link from 'next/link'
 import { 
   Trophy, Flame, Calendar, Activity, Coins, Layers, 
-  ArrowUpRight, Copy, Check, Search, Sparkles, ExternalLink, HelpCircle, ArrowLeft
+  ArrowUpRight, Copy, Check, Search, Sparkles, ExternalLink, HelpCircle, ArrowLeft, Loader2
 } from 'lucide-react'
 import { PortalBackground } from '@/components/PortalBackground'
 
@@ -71,6 +71,7 @@ export default function StatsPage() {
   
   // Heatmap generation
   const [heatmapData, setHeatmapData] = useState<{ [dateStr: string]: number }>({})
+  const [loadingStep, setLoadingStep] = useState(0)
 
   const copyToClipboard = (text: string, id: string) => {
     navigator.clipboard.writeText(text)
@@ -96,6 +97,11 @@ export default function StatsPage() {
 
     setLoading(true)
     setError(null)
+    setLoadingStep(0)
+
+    const stepInterval = setInterval(() => {
+      setLoadingStep(prev => (prev < 3 ? prev + 1 : prev))
+    }, 900)
 
     try {
       const res = await fetch(`/api/stats?address=${cleanTarget}`)
@@ -227,6 +233,7 @@ export default function StatsPage() {
       console.error(err)
       setError(err.message || 'Failed to analyze Base wallet logs. Please verify the address.')
     } finally {
+      clearInterval(stepInterval)
       setLoading(false)
     }
   }
@@ -351,6 +358,104 @@ export default function StatsPage() {
             </p>
           )}
         </div>
+
+        {/* Advanced Premium Fetching UI */}
+        {loading && (
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 animate-fade-in w-full">
+            
+            {/* Left Card: Live Sandbox & Analysis Status */}
+            <div className="lg:col-span-2 liquid-glass-card p-6 flex flex-col gap-8 text-left relative overflow-hidden">
+              {/* Shimmer overlay effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[rgba(255,255,255,0.15)] dark:via-[rgba(255,255,255,0.03)] to-transparent -translate-x-full animate-shimmer pointer-events-none" />
+              
+              {/* Header Title with Pulsing Status Bullet */}
+              <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800/60 pb-4">
+                <div className="flex items-center gap-2">
+                  <div className="w-2.5 h-2.5 rounded-full bg-[var(--accent-color)] animate-ping" />
+                  <span className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider">Base Network Sync</span>
+                </div>
+                <span className="text-4xs font-mono text-[var(--text-secondary)] uppercase bg-[var(--bg-primary)] px-2 py-0.5 rounded border border-[var(--border-primary)]">
+                  Simulating RPC Engine
+                </span>
+              </div>
+
+              <div className="flex flex-col md:flex-row items-center gap-8 justify-between py-4">
+                {/* Advanced Pulsing Orb Scanner */}
+                <div className="relative flex items-center justify-center w-36 h-36 flex-shrink-0 mx-auto md:mx-0">
+                  {/* Glowing ambient background blur */}
+                  <div className="absolute inset-0 rounded-full bg-[var(--accent-color)] opacity-20 blur-xl animate-pulse" />
+                  
+                  {/* Rotating Outer Ring */}
+                  <div className="absolute inset-0 rounded-full border border-dashed border-[var(--accent-color)] opacity-40 animate-[spin_10s_linear_infinite]" />
+                  
+                  {/* Rotating Inner Ring */}
+                  <div className="absolute inset-4 rounded-full border border-slate-400/20 border-t-[var(--accent-color)] animate-spin" />
+                  
+                  {/* Base Core Logo with Vertical Scanning Line */}
+                  <div className="absolute inset-8 rounded-full bg-[var(--bg-primary)] border border-[var(--border-primary)] flex items-center justify-center shadow-inner overflow-hidden">
+                    <img src="/base.png" alt="Base" className="h-10 w-10 object-contain animate-pulse" />
+                    {/* Sweeping Laser Line */}
+                    <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-blue-500 to-transparent animate-[scan_2s_ease-in-out_infinite]" />
+                  </div>
+                </div>
+
+                {/* Pipeline logs stream */}
+                <div className="flex-1 flex flex-col gap-3.5 w-full">
+                  <PipelineStatusRow 
+                    label="Sync Block Headers & Ledger" 
+                    desc="Reading state trie at current Base epoch" 
+                    status={loadingStep > 0 ? 'completed' : loadingStep === 0 ? 'active' : 'pending'} 
+                  />
+                  <PipelineStatusRow 
+                    label="Extract Token Transactions" 
+                    desc="Scanning ERC-20 contract deploys & mint calls" 
+                    status={loadingStep > 1 ? 'completed' : loadingStep === 1 ? 'active' : 'pending'} 
+                  />
+                  <PipelineStatusRow 
+                    label="Analyze Streaks & Heatmap" 
+                    desc="Correlating timestamps and consecutive active days" 
+                    status={loadingStep > 2 ? 'completed' : loadingStep === 2 ? 'active' : 'pending'} 
+                  />
+                  <PipelineStatusRow 
+                    label="Synthesize Onchain Score" 
+                    desc="Weighting volumes, frequency, and diversity ratios" 
+                    status={loadingStep === 3 ? 'active' : 'pending'} 
+                  />
+                </div>
+              </div>
+
+              {/* Shimmering stats grid mockup */}
+              <div className="grid grid-cols-2 sm:grid-cols-5 gap-4 pt-6 border-t border-slate-100 dark:border-slate-800/60">
+                {Array.from({ length: 5 }).map((_, idx) => (
+                  <div key={idx} className="flex flex-col gap-2">
+                    <div className="h-6 w-12 rounded bg-slate-200/40 dark:bg-slate-800/50 animate-pulse" />
+                    <div className="h-2 w-16 rounded bg-slate-100/60 dark:bg-slate-900/60 animate-pulse" />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Right Card: Shimmering Feed Stream Mockup */}
+            <div className="liquid-glass-card p-6 flex flex-col gap-4">
+              <div className="flex items-center gap-2 border-b border-slate-100 dark:border-slate-800/60 pb-3">
+                <Loader2 className="h-4 w-4 text-[var(--accent-color)] animate-spin" />
+                <span className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">Parsing Transactions</span>
+              </div>
+              <div className="space-y-3 max-h-[360px] overflow-hidden">
+                {Array.from({ length: 3 }).map((_, idx) => (
+                  <div key={idx} className="p-3.5 rounded-xl border border-[var(--border-primary)] bg-[var(--bg-primary)] flex items-center justify-between opacity-70">
+                    <div className="space-y-2 flex-1">
+                      <div className="h-3.5 w-24 rounded bg-slate-200/40 dark:bg-slate-800/50 animate-pulse" />
+                      <div className="h-2.5 w-16 rounded bg-slate-100/60 dark:bg-slate-900/60 animate-pulse" />
+                    </div>
+                    <div className="h-4 w-12 rounded bg-slate-200/30 dark:bg-slate-800/30 animate-pulse" />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+          </div>
+        )}
 
         {/* Dynamic Analytics Dashboard */}
         {dataAddress && !loading && (
@@ -667,6 +772,44 @@ export default function StatsPage() {
           </div>
         )}
 
+      </div>
+    </div>
+  )
+}
+
+function PipelineStatusRow({
+  label, desc, status
+}: {
+  label: string
+  desc: string
+  status: 'pending' | 'active' | 'completed'
+}) {
+  return (
+    <div className={`flex items-start gap-3 transition-opacity duration-300 ${status === 'pending' ? 'opacity-40' : 'opacity-100'}`}>
+      <div className="mt-1 flex-shrink-0">
+        {status === 'completed' && (
+          <div className="flex h-4.5 w-4.5 items-center justify-center rounded-full bg-green-500/10 border border-green-500/20 text-green-500">
+            <Check className="h-3 w-3" />
+          </div>
+        )}
+        {status === 'active' && (
+          <div className="flex h-4.5 w-4.5 items-center justify-center rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-500 animate-pulse">
+            <Loader2 className="h-2.5 w-2.5 animate-spin" />
+          </div>
+        )}
+        {status === 'pending' && (
+          <div className="flex h-4.5 w-4.5 items-center justify-center rounded-full bg-slate-200/20 border border-slate-300/20 text-slate-400">
+            <div className="h-1.5 w-1.5 rounded-full bg-slate-300/40" />
+          </div>
+        )}
+      </div>
+      <div>
+        <p className="text-2xs font-extrabold text-[var(--text-primary)] leading-tight tracking-tight uppercase">
+          {label}
+        </p>
+        <p className="text-4xs text-[var(--text-secondary)] font-medium leading-none mt-0.5">
+          {desc}
+        </p>
       </div>
     </div>
   )

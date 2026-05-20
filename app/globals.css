@@ -357,6 +357,19 @@ body {
   animation: fade-in 0.25s ease-out forwards;
 }
 
+@keyframes scan {
+  0%, 100% { transform: translateY(-100%); }
+  50% { transform: translateY(100px); }
+}
+
+@keyframes shimmer {
+  100% { transform: translateX(100%); }
+}
+
+.animate-shimmer {
+  animation: shimmer 2.2s infinite;
+}
+
 /* Selection */
 ::selection {
   background-color: rgba(0, 82, 255, 0.1);
