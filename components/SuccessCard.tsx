@@ -36,6 +36,30 @@ export function SuccessCard({ result, onDeployAnother }: SuccessCardProps) {
     if (!window.ethereum) return
     setAddingToWallet(true)
     try {
+      // Switch wallet to Base network first (0x2105 is hex for 8453)
+      try {
+        await window.ethereum.request({
+          method: 'wallet_switchEthereumChain',
+          params: [{ chainId: '0x2105' }],
+        })
+      } catch (switchError: any) {
+        // Code 4902 means the chain has not been added to the wallet yet
+        if (switchError.code === 4902) {
+          await window.ethereum.request({
+            method: 'wallet_addEthereumChain',
+            params: [
+              {
+                chainId: '0x2105',
+                chainName: 'Base',
+                nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+                rpcUrls: ['https://mainnet.base.org'],
+                blockExplorerUrls: ['https://basescan.org'],
+              },
+            ],
+          })
+        }
+      }
+
       await window.ethereum.request({
         method: 'wallet_watchAsset',
         params: {
