@@ -83,28 +83,32 @@ export default function HomePage() {
             </p>
           </div>
 
-          {/* Luxury CTA Deck (Equal 150px Width to Prevent wrapping, clean premium buttons) */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 max-w-md mx-auto w-full pt-1">
+          {/* Organized CTA Deck: Top row primary button, Bottom row side-by-side helper buttons */}
+          <div className="flex flex-col items-center justify-center gap-3.5 max-w-[314px] mx-auto w-full pt-1">
+            {/* Top row: Deploy Token */}
             <Link
               href="/deploy"
-              className="premium-btn-primary w-full sm:w-[150px] h-[45px] rounded-xl flex items-center justify-center text-[10px] uppercase tracking-wider font-extrabold transition-all duration-200 shadow-md shadow-blue-500/10 hover:shadow-lg hover:shadow-blue-500/20"
+              className="premium-btn-primary w-full h-[45px] rounded-xl flex items-center justify-center text-[10px] uppercase tracking-wider font-extrabold transition-all duration-200 shadow-md shadow-blue-500/10 hover:shadow-lg hover:shadow-blue-500/20"
             >
               Deploy Token
             </Link>
             
-            <Link
-              href="/dashboard"
-              className="premium-btn-secondary w-full sm:w-[150px] h-[45px] rounded-xl flex items-center justify-center text-[10px] uppercase tracking-wider font-extrabold transition-all duration-200 border border-[var(--border-secondary)] bg-[var(--bg-secondary)] hover:bg-[var(--bg-tertiary)] text-[var(--text-primary)]"
-            >
-              Dashboard
-            </Link>
+            {/* Bottom row: Side-by-side Dashboard & Wallet Stats */}
+            <div className="flex w-full gap-3.5">
+              <Link
+                href="/dashboard"
+                className="w-[150px] h-[45px] rounded-xl flex items-center justify-center text-[10px] uppercase tracking-wider font-extrabold transition-all duration-200 border border-blue-500/30 dark:border-blue-500/45 bg-[var(--bg-secondary)] hover:border-[#0052FF] hover:bg-[var(--bg-tertiary)] text-[var(--text-primary)] hover:shadow-sm hover:shadow-blue-500/10"
+              >
+                Dashboard
+              </Link>
 
-            <Link
-              href="/stats"
-              className="premium-btn-secondary w-full sm:w-[150px] h-[45px] rounded-xl flex items-center justify-center text-[10px] uppercase tracking-wider font-extrabold transition-all duration-200 border border-[var(--accent-color)]/25 bg-[var(--accent-soft)] hover:bg-blue-50 dark:hover:bg-blue-950/20 text-[var(--text-primary)]"
-            >
-              Wallet Stats
-            </Link>
+              <Link
+                href="/stats"
+                className="w-[150px] h-[45px] rounded-xl flex items-center justify-center text-[10px] uppercase tracking-wider font-extrabold transition-all duration-200 border border-blue-500/30 dark:border-blue-500/45 bg-[var(--bg-secondary)] hover:border-[#0052FF] hover:bg-[var(--bg-tertiary)] text-[var(--text-primary)] hover:shadow-sm hover:shadow-blue-500/10"
+              >
+                Wallet Stats
+              </Link>
+            </div>
           </div>
 
           {/* Bottom Security Footer */}
