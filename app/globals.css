@@ -14,8 +14,8 @@
   
   --accent-color: #0052FF; /* Official Base Blue */
   --accent-hover: #0046db;
-  --accent-soft: rgba(0, 82, 255, 0.04);
-  --accent-soft-border: rgba(0, 82, 255, 0.12);
+  --accent-soft: rgba(0, 82, 255, 0.09);
+  --accent-soft-border: rgba(0, 82, 255, 0.18);
   
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.02);
   --shadow-md: 0 4px 12px rgba(0, 82, 255, 0.04);
@@ -34,8 +34,8 @@
   
   --accent-color: #0052FF;
   --accent-hover: #1c68ff;
-  --accent-soft: rgba(0, 82, 255, 0.05);
-  --accent-soft-border: rgba(0, 82, 255, 0.15);
+  --accent-soft: rgba(0, 82, 255, 0.18);
+  --accent-soft-border: rgba(0, 82, 255, 0.28);
   
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.8);
   --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.9);
