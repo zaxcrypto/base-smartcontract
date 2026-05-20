@@ -11,97 +11,84 @@ export function PortalBackground() {
 
   if (!mounted) return null
 
-  const strokeColor = 'var(--accent-color)'
-  
+  // Generate 48 rays radiating out from the center (50%, 45%) to cover the screen
+  const rayCount = 48
+  const rays = Array.from({ length: rayCount }).map((_, i) => {
+    const angle = (i * 360) / rayCount
+    const rad = (angle * Math.PI) / 180
+    // Extend end points far beyond viewport boundaries (180% radius)
+    const x2 = 50 + Math.cos(rad) * 180
+    const y2 = 45 + Math.sin(rad) * 180
+    return {
+      x2: `${x2}%`,
+      y2: `${y2}%`,
+      width: i % 2 === 0 ? '18' : '10', // Variable thickness for organic density
+      opacity: i % 3 === 0 ? '1.0' : i % 2 === 0 ? '0.75' : '0.45', // Varied intensities
+    }
+  })
+
   return (
-    <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0 select-none">
+    <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0 select-none bg-[var(--bg-primary)]">
       <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          {/* Subtle core spotlight glow behind the center */}
-          <radialGradient id="portal-glow" cx="50%" cy="45%" r="75%">
-            <stop offset="0%" stopColor={strokeColor} stopOpacity="0" />
-            <stop offset="40%" stopColor={strokeColor} stopOpacity="0.02" />
-            <stop offset="100%" stopColor={strokeColor} stopOpacity="0.14" />
+          {/* Vertical Halftone/Dashed Stripe Pattern */}
+          <pattern id="base-vertical-dashes" width="10" height="10" patternUnits="userSpaceOnUse">
+            <line 
+              x1="5" 
+              y1="0" 
+              x2="5" 
+              y2="10" 
+              stroke="#0052FF" 
+              strokeWidth="2" 
+              strokeDasharray="2, 3" 
+            />
+          </pattern>
+
+          {/* Mask to shape the vertical dashed lines into the radiating sunburst */}
+          <mask id="base-sunburst-mask">
+            {/* Draw base black to hide everything by default */}
+            <rect width="100%" height="100%" fill="black" />
+            
+            {/* Draw radiating lines in white to make the pattern visible along the rays */}
+            {rays.map((ray, idx) => (
+              <line
+                key={idx}
+                x1="50%"
+                y1="45%"
+                x2={ray.x2}
+                y2={ray.y2}
+                stroke="white"
+                strokeWidth={ray.width}
+                opacity={ray.opacity}
+                strokeLinecap="round"
+              />
+            ))}
+          </mask>
+
+          {/* Vignette/Fade radial gradient to blend the pattern into the screen edges */}
+          <radialGradient id="base-vignette" cx="50%" cy="45%" r="70%">
+            <stop offset="0%" stopColor="var(--bg-primary)" stopOpacity="0" />
+            <stop offset="35%" stopColor="var(--bg-primary)" stopOpacity="0.15" />
+            <stop offset="70%" stopColor="var(--bg-primary)" stopOpacity="0.8" />
+            <stop offset="100%" stopColor="var(--bg-primary)" stopOpacity="1" />
           </radialGradient>
-
-          {/* Directional Linear Gradients for Razor-Thin Rays (Fully visible edges fading to 0 opacity in center) */}
-          <linearGradient id="grad-tl" x1="0%" y1="0%" x2="50%" y2="45%">
-            <stop offset="0%" stopColor={strokeColor} stopOpacity="0.8" />
-            <stop offset="40%" stopColor={strokeColor} stopOpacity="0.3" />
-            <stop offset="85%" stopColor={strokeColor} stopOpacity="0" />
-          </linearGradient>
-
-          <linearGradient id="grad-tr" x1="100%" y1="0%" x2="50%" y2="45%">
-            <stop offset="0%" stopColor={strokeColor} stopOpacity="0.8" />
-            <stop offset="40%" stopColor={strokeColor} stopOpacity="0.3" />
-            <stop offset="85%" stopColor={strokeColor} stopOpacity="0" />
-          </linearGradient>
-
-          <linearGradient id="grad-bl" x1="0%" y1="100%" x2="50%" y2="45%">
-            <stop offset="0%" stopColor={strokeColor} stopOpacity="0.8" />
-            <stop offset="40%" stopColor={strokeColor} stopOpacity="0.3" />
-            <stop offset="85%" stopColor={strokeColor} stopOpacity="0" />
-          </linearGradient>
-
-          <linearGradient id="grad-br" x1="100%" y1="100%" x2="50%" y2="45%">
-            <stop offset="0%" stopColor={strokeColor} stopOpacity="0.8" />
-            <stop offset="40%" stopColor={strokeColor} stopOpacity="0.3" />
-            <stop offset="85%" stopColor={strokeColor} stopOpacity="0" />
-          </linearGradient>
-
-          <linearGradient id="grad-top" x1="0%" y1="0%" x2="0%" y2="45%">
-            <stop offset="0%" stopColor={strokeColor} stopOpacity="0.8" />
-            <stop offset="45%" stopColor={strokeColor} stopOpacity="0" />
-          </linearGradient>
-
-          <linearGradient id="grad-bottom" x1="0%" y1="100%" x2="0%" y2="45%">
-            <stop offset="0%" stopColor={strokeColor} stopOpacity="0.8" />
-            <stop offset="45%" stopColor={strokeColor} stopOpacity="0" />
-          </linearGradient>
-
-          <linearGradient id="grad-left" x1="0%" y1="0%" x2="50%" y2="0%">
-            <stop offset="0%" stopColor={strokeColor} stopOpacity="0.8" />
-            <stop offset="45%" stopColor={strokeColor} stopOpacity="0" />
-          </linearGradient>
-
-          <linearGradient id="grad-right" x1="100%" y1="0%" x2="50%" y2="0%">
-            <stop offset="0%" stopColor={strokeColor} stopOpacity="0.8" />
-            <stop offset="45%" stopColor={strokeColor} stopOpacity="0" />
-          </linearGradient>
         </defs>
 
-        {/* Ambient base spotlight */}
-        <rect width="100%" height="100%" fill="url(#portal-glow)" />
+        {/* The radiating vertical halftone stripes */}
+        <rect
+          width="100%"
+          height="100%"
+          fill="url(#base-vertical-dashes)"
+          mask="url(#base-sunburst-mask)"
+          className="opacity-25 dark:opacity-35"
+        />
 
-        {/* ─── 16 Razor-Thin Minimal 3D Perspective Lines (Tapering from edges to center) ─── */}
-        
-        {/* Corner Diagonals */}
-        <line x1="0" y1="0" x2="50%" y2="45%" stroke="url(#grad-tl)" strokeWidth="1.5" />
-        <line x1="100%" y1="0" x2="50%" y2="45%" stroke="url(#grad-tr)" strokeWidth="1.5" />
-        <line x1="0" y1="100%" x2="50%" y2="45%" stroke="url(#grad-bl)" strokeWidth="1.5" />
-        <line x1="100%" y1="100%" x2="50%" y2="45%" stroke="url(#grad-br)" strokeWidth="1.5" />
-
-        {/* Top Boundary Rays */}
-        <line x1="20%" y1="0" x2="50%" y2="45%" stroke="url(#grad-tl)" strokeWidth="1.2" />
-        <line x1="40%" y1="0" x2="50%" y2="45%" stroke="url(#grad-tl)" strokeWidth="1.2" />
-        <line x1="60%" y1="0" x2="50%" y2="45%" stroke="url(#grad-tr)" strokeWidth="1.2" />
-        <line x1="80%" y1="0" x2="50%" y2="45%" stroke="url(#grad-tr)" strokeWidth="1.2" />
-
-        {/* Bottom Boundary Rays */}
-        <line x1="20%" y1="100%" x2="50%" y2="45%" stroke="url(#grad-bl)" strokeWidth="1.2" />
-        <line x1="40%" y1="100%" x2="50%" y2="45%" stroke="url(#grad-bl)" strokeWidth="1.2" />
-        <line x1="60%" y1="100%" x2="50%" y2="45%" stroke="url(#grad-br)" strokeWidth="1.2" />
-        <line x1="80%" y1="100%" x2="50%" y2="45%" stroke="url(#grad-br)" strokeWidth="1.2" />
-
-        {/* Left Edge Rays */}
-        <line x1="0" y1="25%" x2="50%" y2="45%" stroke="url(#grad-tl)" strokeWidth="1.2" />
-        <line x1="0" y1="50%" x2="50%" y2="45%" stroke="url(#grad-bl)" strokeWidth="1.2" />
-        <line x1="0" y1="75%" x2="50%" y2="45%" stroke="url(#grad-bl)" strokeWidth="1.2" />
-
-        {/* Right Edge Rays */}
-        <line x1="100%" y1="25%" x2="50%" y2="45%" stroke="url(#grad-tr)" strokeWidth="1.2" />
-        <line x1="100%" y1="50%" x2="50%" y2="45%" stroke="url(#grad-br)" strokeWidth="1.2" />
-        <line x1="100%" y1="75%" x2="50%" y2="45%" stroke="url(#grad-br)" strokeWidth="1.2" />
+        {/* Soft Vignette Overlay for smooth blending */}
+        <rect 
+          width="100%" 
+          height="100%" 
+          fill="url(#base-vignette)" 
+        />
       </svg>
     </div>
   )
