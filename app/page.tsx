@@ -48,14 +48,6 @@ export default function HomePage() {
             </defs>
             <rect width="100%" height="100%" fill="url(#banner-dashes)" mask="url(#banner-mask)" />
           </svg>
-          
-          {/* Base Logo Branding matching the requested image with curved corners */}
-          <div className="relative z-10 flex items-center gap-1.5 opacity-95 mr-3 mb-1">
-            <div className="w-4 h-4 bg-white rounded-[3px] flex items-center justify-center">
-              <div className="w-2.5 h-2.5 bg-[#0052FF] rounded-[1.5px]" />
-            </div>
-            <span className="font-sans font-black text-white text-base tracking-tighter leading-none">base</span>
-          </div>
         </div>
 
         {/* Architectural corner intersection marks */}
