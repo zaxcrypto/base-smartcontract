@@ -21,6 +21,6 @@ export const MAX_DECIMALS = 18
 export const DEFAULT_DECIMALS = 18
 
 // ─── UI ───────────────────────────────────────────────────────────────────────
-export const SITE_NAME = 'Base Token Deployer'
+export const SITE_NAME = 'Base.fun'
 export const SITE_DESCRIPTION = 'Deploy your own ERC-20 token on Base Mainnet in seconds. No code required.'
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://base-token-deployer.vercel.app'
