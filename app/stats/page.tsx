@@ -387,20 +387,20 @@ export default function StatsPage() {
                   </div>
 
                   {/* GitHub Heatmap Grid strictly styled like Basenames */}
-                  <div className="flex-1 flex flex-col gap-3 justify-center items-start lg:items-end">
+                  <div className="flex-1 flex flex-col gap-3 justify-center items-start lg:items-start">
                     <div className="w-full overflow-hidden pb-1">
-                      <div className="flex gap-[3px] justify-start lg:justify-end">
+                      <div className="flex gap-[4px] justify-start lg:justify-start">
                         {Array.from({ length: 26 }).map((_, weekIndex) => (
-                          <div key={weekIndex} className="flex flex-col gap-[3px]">
+                          <div key={weekIndex} className="flex flex-col gap-[4px]">
                             {Array.from({ length: 7 }).map((_, dayIndex) => {
                               const dayList = renderHeatmap()
                               const startOffset = Math.max(0, dayList.length - 26 * 7)
                               const dayObj = dayList[startOffset + (weekIndex * 7 + dayIndex)]
-                              if (!dayObj) return <div key={dayIndex} className="w-2 h-2 rounded-sm" />
+                              if (!dayObj) return <div key={dayIndex} className="w-[11.5px] h-[11.5px] rounded-[2.5px]" />
                               return (
                                 <div
                                   key={dayIndex}
-                                  className={`w-2 h-2 rounded-[2px] transition-all duration-300 ${dayObj.color}`}
+                                  className={`w-[11.5px] h-[11.5px] rounded-[2.5px] transition-all duration-300 ${dayObj.color}`}
                                   title={`${dayObj.date}: ${dayObj.count} txs`}
                                 />
                               )
@@ -410,13 +410,13 @@ export default function StatsPage() {
                       </div>
                     </div>
 
-                    <div className="flex items-center justify-start lg:justify-end gap-1.5 text-5xs font-medium text-slate-400">
+                    <div className="flex items-center justify-start lg:justify-start gap-1.5 text-5xs font-medium text-slate-400">
                       <span>Less</span>
-                      <div className="w-1.5 h-1.5 rounded-[1px] bg-slate-100 dark:bg-slate-900" />
-                      <div className="w-1.5 h-1.5 rounded-[1px] bg-blue-100 dark:bg-blue-950" />
-                      <div className="w-1.5 h-1.5 rounded-[1px] bg-blue-300 dark:bg-blue-800" />
-                      <div className="w-1.5 h-1.5 rounded-[1px] bg-blue-500" />
-                      <div className="w-1.5 h-1.5 rounded-[1px] bg-blue-700" />
+                      <div className="w-2.5 h-2.5 rounded-[1.5px] bg-slate-100 dark:bg-slate-900" />
+                      <div className="w-2.5 h-2.5 rounded-[1.5px] bg-blue-100 dark:bg-blue-950" />
+                      <div className="w-2.5 h-2.5 rounded-[1.5px] bg-blue-300 dark:bg-blue-800" />
+                      <div className="w-2.5 h-2.5 rounded-[1.5px] bg-blue-500" />
+                      <div className="w-2.5 h-2.5 rounded-[1.5px] bg-blue-700" />
                       <span>More</span>
                     </div>
                   </div>
