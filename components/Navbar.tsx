@@ -19,8 +19,44 @@ export function Navbar() {
   }, [])
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-[var(--border-primary)] bg-[var(--bg-secondary)]/70 backdrop-blur-md transition-all duration-300">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-[var(--border-primary)] bg-[var(--bg-secondary)]/80 backdrop-blur-md transition-all duration-300 overflow-hidden">
+      {/* Subtle Navbar Brand Halftone Sunburst Pattern overlay */}
+      <div className="absolute inset-0 w-full h-full pointer-events-none select-none z-0">
+        <svg className="w-full h-full opacity-[0.09] dark:opacity-[0.16]" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="nav-dashes" width="10" height="10" patternUnits="userSpaceOnUse">
+              <line x1="5" y1="0" x2="5" y2="10" stroke="#0052FF" strokeWidth="1.5" strokeDasharray="1.5, 2.5" />
+            </pattern>
+            <mask id="nav-mask">
+              <rect width="100%" height="100%" fill="black" />
+              {/* Radiating lines in mask, centered around logo/link start (12% X, 50% Y) */}
+              {Array.from({ length: 24 }).map((_, i) => {
+                const angle = (i * 360) / 24;
+                const rad = (angle * Math.PI) / 180;
+                const x2 = 12 + Math.cos(rad) * 120;
+                const y2 = 50 + Math.sin(rad) * 120;
+                return (
+                  <line
+                    key={i}
+                    x1="12%"
+                    y1="50%"
+                    x2={`${x2}%`}
+                    y2={`${y2}%`}
+                    stroke="white"
+                    strokeWidth={i % 2 === 0 ? "18" : "8"}
+                    opacity="0.8"
+                  />
+                );
+              })}
+            </mask>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#nav-dashes)" mask="url(#nav-mask)" />
+        </svg>
+        {/* Soft blue ambient glow behind the logo */}
+        <div className="absolute top-1/2 left-[12%] -translate-x-1/2 -translate-y-1/2 w-48 h-12 bg-blue-500/10 dark:bg-blue-500/20 blur-xl rounded-full" />
+      </div>
+
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
