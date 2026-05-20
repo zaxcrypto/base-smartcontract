@@ -1,65 +1,84 @@
-import Image from "next/image";
+'use client'
 
-export default function Home() {
+import Link from 'next/link'
+import { Rocket, LayoutDashboard, Zap, ShieldCheck, Sparkles } from 'lucide-react'
+import { PortalBackground } from '@/components/PortalBackground'
+
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <div className="relative min-h-[calc(100vh-4rem)] bg-[var(--bg-primary)] px-4 flex flex-col items-center justify-center overflow-hidden">
+      {/* Immersive 3D Space Portal Ellipse Line Background */}
+      <PortalBackground />
+      
+      {/* Soft Ambient Spot Glow */}
+      <div className="ambient-glow" />
+
+      {/* Floating Curved Liquid Glass Window (z-10 stacking foreground) */}
+      <div className="relative z-10 liquid-glass-card px-6 sm:px-12 py-16 sm:py-20 max-w-xl w-full flex flex-col items-center justify-center text-center">
+        
+        {/* Architectural corner intersection marks */}
+        <div className="absolute -top-2.5 -left-2 text-xs font-light text-[var(--text-muted)] select-none opacity-40 font-mono">+</div>
+        <div className="absolute -top-2.5 -right-2 text-xs font-light text-[var(--text-muted)] select-none opacity-40 font-mono">+</div>
+        <div className="absolute -bottom-3.5 -left-2 text-xs font-light text-[var(--text-muted)] select-none opacity-40 font-mono">+</div>
+        <div className="absolute -bottom-3.5 -right-2 text-xs font-light text-[var(--text-muted)] select-none opacity-40 font-mono">+</div>
+
+        <div className="w-full space-y-8 animate-fade-in">
+          {/* Network Capsule */}
+          <div className="flex justify-center">
+            <div className="premium-badge premium-badge-blue inline-flex items-center gap-1.5 py-1 px-3">
+              <img src="/base.png" alt="Base Logo" className="h-3.5 w-3.5 object-contain mr-0.5" />
+              <span>Base Mainnet Live</span>
+            </div>
+          </div>
+
+          {/* Master Title */}
+          <div className="space-y-4">
+            <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[var(--text-primary)] leading-[1.15]">
+              Launch ERC-20 Tokens
+              <br />
+              <span className="text-[var(--accent-color)]">on Base Mainnet</span>
+            </h1>
+            
+            {/* Description */}
+            <p className="text-xs sm:text-sm text-[var(--text-secondary)] font-semibold max-w-sm mx-auto leading-relaxed">
+              Configure parameters, simulate gas limits, and deploy standard contracts instantly to Layer-2.
+            </p>
+          </div>
+
+          {/* Luxury CTA Deck */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 max-w-xl mx-auto w-full pt-2">
+            <Link
+              href="/deploy"
+              className="premium-btn-primary w-full sm:w-auto px-6 py-3.5 flex items-center justify-center gap-2 hover:-translate-y-0.5 transition-all shadow-md shadow-blue-500/10 hover:shadow-lg hover:shadow-blue-500/20 text-xs"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              <Rocket className="h-4.5 w-4.5" />
+              Deploy Contract
+            </Link>
+            
+            <Link
+              href="/dashboard"
+              className="premium-btn-secondary w-full sm:w-auto px-5 py-3.5 flex items-center justify-center gap-2 text-xs"
             >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+              <LayoutDashboard className="h-4.5 w-4.5 text-[var(--text-secondary)]" />
+              Dashboard
+            </Link>
+
+            <Link
+              href="/stats"
+              className="premium-btn-secondary w-full sm:w-auto px-5 py-3.5 flex items-center justify-center gap-2 text-xs border-[var(--accent-color)]/25 bg-[var(--accent-soft)] hover:bg-blue-50 dark:hover:bg-blue-950/20"
+            >
+              <Sparkles className="h-4.5 w-4.5 text-[var(--accent-color)] animate-pulse" />
+              Wallet Stats
+            </Link>
+          </div>
+
+          {/* Bottom Security Footer */}
+          <div className="flex items-center justify-center gap-1.5 text-[10px] uppercase tracking-widest text-[var(--text-muted)] font-bold pt-10 border-t border-[var(--border-primary)] max-w-xs mx-auto">
+            <ShieldCheck className="h-3.5 w-3.5 text-green-500" />
+            Zero Custom Exploit Surfaces
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+      </div>
     </div>
-  );
+  )
 }
