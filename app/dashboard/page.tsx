@@ -1,6 +1,8 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import Link from 'next/link'
+import { ArrowLeft } from 'lucide-react'
 import { useAccount } from 'wagmi'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { useDeployedTokens } from '@/hooks/useDeployedTokens'
@@ -45,6 +47,17 @@ export default function DashboardPage() {
         <div className="absolute -top-2.5 -right-2 text-xs font-light text-[var(--text-muted)] select-none opacity-45 font-mono">+</div>
         <div className="absolute -bottom-3.5 -left-2 text-xs font-light text-[var(--text-muted)] select-none opacity-45 font-mono">+</div>
         <div className="absolute -bottom-3.5 -right-2 text-xs font-light text-[var(--text-muted)] select-none opacity-45 font-mono">+</div>
+
+        {/* Back to Home Button */}
+        <div className="w-full flex justify-start mb-4">
+          <Link 
+            href="/" 
+            className="inline-flex items-center gap-1.5 text-xs font-bold text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
+          >
+            <ArrowLeft className="h-3.5 w-3.5" />
+            Back to Home
+          </Link>
+        </div>
 
         {/* Curved Liquid Glass Panel */}
         <div className="w-full liquid-glass-card p-6 sm:p-8 animate-fade-in">

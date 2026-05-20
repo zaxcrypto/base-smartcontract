@@ -75,7 +75,7 @@ export default function HomePage() {
 
           {/* Master Title & Typography */}
           <div className="space-y-4">
-            <h1 className="text-3xl sm:text-4xl font-black tracking-tighter text-[var(--text-primary)] leading-[1.15]">
+            <h1 className="text-[25px] sm:text-[32px] font-bold tracking-tight text-[var(--text-primary)] leading-[1.25]">
               Launch ERC-20 Tokens
               <br />
               <span className="bg-gradient-to-r from-blue-600 via-indigo-500 to-blue-500 dark:from-blue-400 dark:via-indigo-400 dark:to-cyan-400 bg-clip-text text-transparent">
