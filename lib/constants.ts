@@ -1,9 +1,8 @@
 import { type Address } from 'viem'
 
 // ─── Factory Contract ────────────────────────────────────────────────────────
-// Replace with your deployed factory address after running deploy script
 export const FACTORY_ADDRESS: Address =
-  (process.env.NEXT_PUBLIC_FACTORY_ADDRESS as Address) ?? '0x0000000000000000000000000000000000000000'
+  (process.env.NEXT_PUBLIC_FACTORY_ADDRESS as Address) || '0xECc3337bFa58D6B4cBa4EaDD557E8fAFd1cc851D'
 
 // ─── Base Network ────────────────────────────────────────────────────────────
 export const BASE_CHAIN_ID = 8453
