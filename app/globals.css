@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+@theme {
+  --font-size-3xs: 9.5px;
+  --font-size-4xs: 8.5px;
+}
+
 /* ─── Premium Color Design Variables (White/Blue & Black/Blue) ───────────── */
 :root {
   /* Changed from #ffffff to an ultra-premium luxury soft ice-blue to make white cards POP */

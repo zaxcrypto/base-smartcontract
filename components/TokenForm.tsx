@@ -253,8 +253,8 @@ export function TokenForm({ onSuccess }: TokenFormProps) {
       {isLoading && (
         <div className="p-4 border border-[var(--border-primary)] rounded-xl bg-[var(--bg-primary)] space-y-4 animate-fade-in">
           <div className="flex items-center justify-between">
-            <span className="text-3xs font-extrabold uppercase tracking-wider text-[var(--text-secondary)]">Pipeline Logs</span>
-            <span className="flex items-center gap-1.5 text-3xs font-extrabold text-[var(--accent-color)] uppercase">
+            <span className="text-[9.5px] font-extrabold uppercase tracking-wider text-[var(--text-secondary)]">Pipeline Logs</span>
+            <span className="flex items-center gap-1.5 text-[9.5px] font-extrabold text-[var(--accent-color)] uppercase">
               <Loader2 className="h-3 w-3 animate-spin" />
               Executing
             </span>
@@ -326,7 +326,7 @@ export function TokenForm({ onSuccess }: TokenFormProps) {
         <div className="flex flex-col items-center justify-center p-6 border border-dashed border-[var(--border-secondary)] rounded-xl bg-[var(--bg-primary)]">
           <Coins className="h-7 w-7 text-[var(--text-secondary)] mb-2 opacity-70" />
           <h4 className="text-xs font-bold text-[var(--text-primary)] mb-1">Authenticate Wallet</h4>
-          <p className="text-3xs text-[var(--text-secondary)] font-medium mb-4 text-center max-w-xs">
+          <p className="text-[10px] text-[var(--text-secondary)] font-medium mb-4 text-center max-w-xs">
             Connect your Web3 address in order to deploy ERC-20 contract assets to Base.
           </p>
           <div className="scale-95">
@@ -335,8 +335,8 @@ export function TokenForm({ onSuccess }: TokenFormProps) {
         </div>
       )}
 
-      <div className="flex items-center justify-center gap-1.5 text-center text-4xs uppercase tracking-widest text-[var(--text-muted)] font-bold">
-        <ShieldCheck className="h-3.5 w-3.5 text-green-500" />
+      <div className="flex items-center justify-center gap-1.5 text-center text-[9.5px] uppercase tracking-wider text-[var(--text-muted)] font-bold mt-2">
+        <ShieldCheck className="h-3.5 w-3.5 text-green-500 flex-shrink-0" />
         Zero Exploit Surfaces · Fully On-chain Autonomous Deployments
       </div>
     </form>
@@ -364,8 +364,8 @@ function ToggleSwitch({
       <div className="flex items-center gap-2">
         {icon}
         <div>
-          <p className="text-3xs font-extrabold uppercase tracking-wide text-[var(--text-primary)]">{label}</p>
-          <p className="text-4xs text-[var(--text-secondary)] font-medium mt-0.5 leading-tight">{description}</p>
+          <p className="text-[9.5px] font-extrabold uppercase tracking-wide text-[var(--text-primary)]">{label}</p>
+          <p className="text-[8.5px] text-[var(--text-secondary)] font-medium mt-0.5 leading-tight">{description}</p>
         </div>
       </div>
       <div className="relative flex-shrink-0">
@@ -404,7 +404,7 @@ function StepperStep({
       <div className="step-bullet" />
       <div>
         <p className="text-2xs font-extrabold text-[var(--text-primary)] tracking-tight leading-none">{label}</p>
-        <p className="text-4xs text-[var(--text-secondary)] font-medium mt-0.5">{desc}</p>
+        <p className="text-[8.5px] text-[var(--text-secondary)] font-medium mt-0.5">{desc}</p>
       </div>
     </div>
   )

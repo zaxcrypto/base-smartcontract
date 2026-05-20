@@ -119,7 +119,7 @@ export function SuccessCard({ result, onDeployAnother }: SuccessCardProps) {
               href={`${BASE_SCAN_TOKEN_URL}/${result.tokenAddress}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-3xs font-bold text-[var(--accent-color)] hover:underline"
+              className="inline-flex items-center gap-1 text-[9.5px] font-bold text-[var(--accent-color)] hover:underline"
             >
               BaseScan <ArrowUpRight className="h-3 w-3" />
             </a>
@@ -150,7 +150,7 @@ export function SuccessCard({ result, onDeployAnother }: SuccessCardProps) {
               href={`${BASE_SCAN_TX_URL}/${result.txHash}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-3xs font-bold text-[var(--accent-color)] hover:underline"
+              className="inline-flex items-center gap-1 text-[9.5px] font-bold text-[var(--accent-color)] hover:underline"
             >
               View Tx <ArrowUpRight className="h-3 w-3" />
             </a>
@@ -211,7 +211,7 @@ export function SuccessCard({ result, onDeployAnother }: SuccessCardProps) {
 function InfoChip({ label, value, highlight }: { label: string; value: string; highlight?: boolean }) {
   return (
     <div className="rounded-xl border border-[var(--border-primary)] bg-[var(--bg-primary)] px-3 py-2.5">
-      <p className="text-4xs uppercase tracking-wider text-[var(--text-muted)] font-bold mb-1">{label}</p>
+      <p className="text-[8.5px] uppercase tracking-wider text-[var(--text-muted)] font-bold mb-1">{label}</p>
       <p className={`text-xs font-bold truncate ${highlight ? 'text-[var(--accent-color)]' : 'text-[var(--text-primary)]'}`}>
         {value}
       </p>

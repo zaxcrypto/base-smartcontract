@@ -68,14 +68,14 @@ export default function DashboardPage() {
                 <h1 className="text-sm font-bold uppercase tracking-wider text-[var(--text-primary)]">
                   My Dashboard
                 </h1>
-                <p className="text-[var(--text-secondary)] text-3xs font-medium mt-1">
+                <p className="text-[var(--text-secondary)] text-[9.5px] font-medium mt-1">
                   Your compiled and active tokens on Base.
                 </p>
               </div>
             </div>
             <button
               onClick={refresh}
-              className="px-3 py-1.5 text-4xs font-bold uppercase tracking-wider rounded-lg border border-[var(--border-primary)] bg-[var(--bg-primary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors focus:outline-none"
+              className="px-3 py-1.5 text-[8.5px] font-bold uppercase tracking-wider rounded-lg border border-[var(--border-primary)] bg-[var(--bg-primary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors focus:outline-none"
             >
               Refresh
             </button>
@@ -107,13 +107,13 @@ export default function DashboardPage() {
                     <div className="space-y-1">
                       <div className="flex items-center gap-1.5 flex-wrap">
                         <span className="text-xs font-extrabold text-[var(--text-primary)]">{token.name}</span>
-                        <span className="premium-badge text-4xs py-0.5 px-1.5 font-bold uppercase">{token.symbol}</span>
+                        <span className="premium-badge text-[8.5px] py-0.5 px-1.5 font-bold uppercase">{token.symbol}</span>
                       </div>
-                      <div className="text-4xs text-[var(--text-secondary)] font-semibold">
+                      <div className="text-[8.5px] text-[var(--text-secondary)] font-semibold">
                         Supply: <span className="text-[var(--text-primary)] font-bold">{Number(token.initialSupply).toLocaleString()}</span>
                       </div>
                       <div className="flex items-center gap-1.5 pt-1">
-                        <code className="text-4xs font-mono font-bold text-green-500">
+                        <code className="text-[8.5px] font-mono font-bold text-green-500">
                           {token.tokenAddress.slice(0, 6)}...{token.tokenAddress.slice(-4)}
                         </code>
                         <button
@@ -121,9 +121,9 @@ export default function DashboardPage() {
                           className="p-1 rounded bg-[var(--bg-secondary)] border border-[var(--border-primary)] hover:bg-[var(--bg-tertiary)] transition-colors focus:outline-none"
                         >
                           {copiedId === token.txHash ? (
-                            <span className="text-4xs text-green-500 font-bold">Copied!</span>
+                            <span className="text-[8.5px] text-green-500 font-bold">Copied!</span>
                           ) : (
-                            <span className="text-4xs text-[var(--text-muted)] font-bold">Copy</span>
+                            <span className="text-[8.5px] text-[var(--text-muted)] font-bold">Copy</span>
                           )}
                         </button>
                       </div>
@@ -133,7 +133,7 @@ export default function DashboardPage() {
                       href={`https://basescan.org/token/${token.tokenAddress}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-4xs font-bold text-[var(--accent-color)] hover:underline flex-shrink-0"
+                      className="text-[8.5px] font-bold text-[var(--accent-color)] hover:underline flex-shrink-0"
                     >
                       BaseScan →
                     </a>
