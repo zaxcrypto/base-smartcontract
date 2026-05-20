@@ -101,7 +101,7 @@ export default function StatsPage() {
 
     const stepInterval = setInterval(() => {
       setLoadingStep(prev => (prev < 3 ? prev + 1 : prev))
-    }, 900)
+    }, 1800)
 
     try {
       const res = await fetch(`/api/stats?address=${cleanTarget}`)
@@ -359,101 +359,57 @@ export default function StatsPage() {
           )}
         </div>
 
-        {/* Advanced Premium Fetching UI */}
+        {/* Advanced Premium Fetching UI (Mac/iPhone-Style Terminal) */}
         {loading && (
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 animate-fade-in w-full">
-            
-            {/* Left Card: Live Sandbox & Analysis Status */}
-            <div className="lg:col-span-2 liquid-glass-card p-6 flex flex-col gap-8 text-left relative overflow-hidden">
-              {/* Shimmer overlay effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[rgba(255,255,255,0.15)] dark:via-[rgba(255,255,255,0.03)] to-transparent -translate-x-full animate-shimmer pointer-events-none" />
-              
-              {/* Header Title with Pulsing Status Bullet */}
-              <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800/60 pb-4">
-                <div className="flex items-center gap-2">
-                  <div className="w-2.5 h-2.5 rounded-full bg-[var(--accent-color)] animate-ping" />
-                  <span className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider">Base Network Sync</span>
-                </div>
-                <span className="text-4xs font-mono text-[var(--text-secondary)] uppercase bg-[var(--bg-primary)] px-2 py-0.5 rounded border border-[var(--border-primary)]">
-                  Simulating RPC Engine
-                </span>
+          <div className="max-w-2xl mx-auto w-full rounded-2xl bg-[#0c1524] border border-slate-800/80 shadow-2xl overflow-hidden font-mono text-left animate-fade-in my-6">
+            {/* Window Title Bar */}
+            <div className="flex justify-between items-center px-4 py-3 bg-[#080f1b] border-b border-slate-850/80">
+              {/* Left: 3 macOS colored dots */}
+              <div className="flex items-center gap-1.5">
+                <div className="w-3 h-3 rounded-full bg-rose-500 shadow-[0_0_8px_rgba(239,68,68,0.4)]" />
+                <div className="w-3 h-3 rounded-full bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.4)]" />
+                <div className="w-3 h-3 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.4)]" />
               </div>
-
-              <div className="flex flex-col md:flex-row items-center gap-8 justify-between py-4">
-                {/* Advanced Pulsing Orb Scanner */}
-                <div className="relative flex items-center justify-center w-36 h-36 flex-shrink-0 mx-auto md:mx-0">
-                  {/* Glowing ambient background blur */}
-                  <div className="absolute inset-0 rounded-full bg-[var(--accent-color)] opacity-20 blur-xl animate-pulse" />
-                  
-                  {/* Rotating Outer Ring */}
-                  <div className="absolute inset-0 rounded-full border border-dashed border-[var(--accent-color)] opacity-40 animate-[spin_10s_linear_infinite]" />
-                  
-                  {/* Rotating Inner Ring */}
-                  <div className="absolute inset-4 rounded-full border border-slate-400/20 border-t-[var(--accent-color)] animate-spin" />
-                  
-                  {/* Base Core Logo with Vertical Scanning Line */}
-                  <div className="absolute inset-8 rounded-full bg-[var(--bg-primary)] border border-[var(--border-primary)] flex items-center justify-center shadow-inner overflow-hidden">
-                    <img src="/base.png" alt="Base" className="h-10 w-10 object-contain animate-pulse" />
-                    {/* Sweeping Laser Line */}
-                    <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-blue-500 to-transparent animate-[scan_2s_ease-in-out_infinite]" />
-                  </div>
-                </div>
-
-                {/* Pipeline logs stream */}
-                <div className="flex-1 flex flex-col gap-3.5 w-full">
-                  <PipelineStatusRow 
-                    label="Sync Block Headers & Ledger" 
-                    desc="Reading state trie at current Base epoch" 
-                    status={loadingStep > 0 ? 'completed' : loadingStep === 0 ? 'active' : 'pending'} 
-                  />
-                  <PipelineStatusRow 
-                    label="Extract Token Transactions" 
-                    desc="Scanning ERC-20 contract deploys & mint calls" 
-                    status={loadingStep > 1 ? 'completed' : loadingStep === 1 ? 'active' : 'pending'} 
-                  />
-                  <PipelineStatusRow 
-                    label="Analyze Streaks & Heatmap" 
-                    desc="Correlating timestamps and consecutive active days" 
-                    status={loadingStep > 2 ? 'completed' : loadingStep === 2 ? 'active' : 'pending'} 
-                  />
-                  <PipelineStatusRow 
-                    label="Synthesize Onchain Score" 
-                    desc="Weighting volumes, frequency, and diversity ratios" 
-                    status={loadingStep === 3 ? 'active' : 'pending'} 
-                  />
-                </div>
-              </div>
-
-              {/* Shimmering stats grid mockup */}
-              <div className="grid grid-cols-2 sm:grid-cols-5 gap-4 pt-6 border-t border-slate-100 dark:border-slate-800/60">
-                {Array.from({ length: 5 }).map((_, idx) => (
-                  <div key={idx} className="flex flex-col gap-2">
-                    <div className="h-6 w-12 rounded bg-slate-200/40 dark:bg-slate-800/50 animate-pulse" />
-                    <div className="h-2 w-16 rounded bg-slate-100/60 dark:bg-slate-900/60 animate-pulse" />
-                  </div>
-                ))}
-              </div>
+              {/* Middle: Title */}
+              <span className="text-[11px] font-mono text-slate-400 font-semibold tracking-tight uppercase">
+                base.fun ~ stats-engine
+              </span>
+              {/* Right: Wallet badge */}
+              <span className="px-2 py-0.5 rounded text-[10px] font-mono text-slate-400 bg-slate-900/60 border border-slate-800/80">
+                {searchAddress ? `${searchAddress.slice(0, 6)}...${searchAddress.slice(-4)}` : '0x0000...0000'}
+              </span>
             </div>
 
-            {/* Right Card: Shimmering Feed Stream Mockup */}
-            <div className="liquid-glass-card p-6 flex flex-col gap-4">
-              <div className="flex items-center gap-2 border-b border-slate-100 dark:border-slate-800/60 pb-3">
-                <Loader2 className="h-4 w-4 text-[var(--accent-color)] animate-spin" />
-                <span className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">Parsing Transactions</span>
-              </div>
-              <div className="space-y-3 max-h-[360px] overflow-hidden">
-                {Array.from({ length: 3 }).map((_, idx) => (
-                  <div key={idx} className="p-3.5 rounded-xl border border-[var(--border-primary)] bg-[var(--bg-primary)] flex items-center justify-between opacity-70">
-                    <div className="space-y-2 flex-1">
-                      <div className="h-3.5 w-24 rounded bg-slate-200/40 dark:bg-slate-800/50 animate-pulse" />
-                      <div className="h-2.5 w-16 rounded bg-slate-100/60 dark:bg-slate-900/60 animate-pulse" />
-                    </div>
-                    <div className="h-4 w-12 rounded bg-slate-200/30 dark:bg-slate-800/30 animate-pulse" />
-                  </div>
-                ))}
+            {/* Terminal Content Area */}
+            <div className="p-6 sm:p-8 space-y-6 bg-[#0c1524]">
+              {/* Terminal Head */}
+              <h3 className="text-cyan-400 text-sm sm:text-base font-bold tracking-wide flex items-center gap-2">
+                <span className="inline-block animate-pulse">&gt; Analyzing wallet activity...</span>
+              </h3>
+
+              {/* Vertical connecting line container */}
+              <div className="relative flex flex-col gap-6 pl-2">
+                {/* Connecting line */}
+                <div className="absolute left-[7px] top-2.5 bottom-2.5 w-0.5 bg-slate-800" />
+
+                <TerminalPipelineRow
+                  label="Checking on-chain activities"
+                  status={loadingStep > 0 ? 'completed' : 'active'}
+                />
+                <TerminalPipelineRow
+                  label="Fetching real-time data from RPC"
+                  status={loadingStep > 1 ? 'completed' : loadingStep === 1 ? 'active' : 'pending'}
+                />
+                <TerminalPipelineRow
+                  label="Analyzing transaction history"
+                  status={loadingStep > 2 ? 'completed' : loadingStep === 2 ? 'active' : 'pending'}
+                />
+                <TerminalPipelineRow
+                  label="Calculating Onchain Score"
+                  status={loadingStep === 3 ? 'active' : 'pending'}
+                />
               </div>
             </div>
-
           </div>
         )}
 
@@ -777,39 +733,70 @@ export default function StatsPage() {
   )
 }
 
-function PipelineStatusRow({
-  label, desc, status
+function TerminalPipelineRow({
+  label, status
 }: {
   label: string
-  desc: string
-  status: 'pending' | 'active' | 'completed'
+  status: 'completed' | 'active' | 'pending'
 }) {
   return (
-    <div className={`flex items-start gap-3 transition-opacity duration-300 ${status === 'pending' ? 'opacity-40' : 'opacity-100'}`}>
-      <div className="mt-1 flex-shrink-0">
+    <div className="flex items-center justify-between gap-4 z-10">
+      <div className="flex items-center gap-3">
+        {/* Glowing connector node */}
+        <div className="relative flex items-center justify-center w-4 h-4 flex-shrink-0">
+          {status === 'completed' && (
+            <>
+              <div className="absolute w-3.5 h-3.5 rounded-full bg-emerald-500 opacity-30 animate-ping" />
+              <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)]" />
+            </>
+          )}
+          {status === 'active' && (
+            <>
+              <div className="absolute w-3.5 h-3.5 rounded-full bg-blue-500 opacity-30 animate-ping" />
+              <div className="w-2.5 h-2.5 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.8)] animate-pulse" />
+            </>
+          )}
+          {status === 'pending' && (
+            <div className="w-2.5 h-2.5 rounded-full border border-slate-600 bg-slate-850" />
+          )}
+        </div>
+        
+        {/* Text */}
+        <div className="flex flex-col">
+          <p className={`text-xs font-mono font-bold leading-tight ${
+            status === 'pending' ? 'text-slate-600' : 'text-slate-200'
+          }`}>
+            &gt; {label}
+          </p>
+          <span className={`text-[10px] font-mono mt-0.5 leading-none ${
+            status === 'completed' ? 'text-emerald-500/80 font-semibold' :
+            status === 'active' ? 'text-blue-400 font-semibold animate-pulse' : 'text-slate-600'
+          }`}>
+            {status === 'completed' ? 'Completed' : status === 'active' ? 'Analyzing...' : 'Awaiting'}
+          </span>
+        </div>
+      </div>
+
+      {/* Right side status badge */}
+      <div>
         {status === 'completed' && (
-          <div className="flex h-4.5 w-4.5 items-center justify-center rounded-full bg-green-500/10 border border-green-500/20 text-green-500">
-            <Check className="h-3 w-3" />
-          </div>
+          <span className="inline-flex items-center gap-1 bg-emerald-950/45 border border-emerald-800/30 text-emerald-400 font-mono text-[10px] px-2.5 py-0.5 rounded-full shadow-[0_0_6px_rgba(16,185,129,0.1)]">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+            done
+          </span>
         )}
         {status === 'active' && (
-          <div className="flex h-4.5 w-4.5 items-center justify-center rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-500 animate-pulse">
-            <Loader2 className="h-2.5 w-2.5 animate-spin" />
-          </div>
+          <span className="inline-flex items-center gap-1 bg-blue-950/45 border border-blue-800/30 text-blue-400 font-mono text-[10px] px-2.5 py-0.5 rounded-full animate-pulse shadow-[0_0_6px_rgba(59,130,246,0.1)]">
+            <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-spin" />
+            running
+          </span>
         )}
         {status === 'pending' && (
-          <div className="flex h-4.5 w-4.5 items-center justify-center rounded-full bg-slate-200/20 border border-slate-300/20 text-slate-400">
-            <div className="h-1.5 w-1.5 rounded-full bg-slate-300/40" />
-          </div>
+          <span className="inline-flex items-center gap-1 bg-slate-900/40 border border-slate-800/30 text-slate-500 font-mono text-[10px] px-2.5 py-0.5 rounded-full opacity-60">
+            <span className="w-1.5 h-1.5 rounded-full bg-slate-500" />
+            pending
+          </span>
         )}
-      </div>
-      <div>
-        <p className="text-2xs font-extrabold text-[var(--text-primary)] leading-tight tracking-tight uppercase">
-          {label}
-        </p>
-        <p className="text-4xs text-[var(--text-secondary)] font-medium leading-none mt-0.5">
-          {desc}
-        </p>
       </div>
     </div>
   )
