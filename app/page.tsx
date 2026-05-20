@@ -118,6 +118,51 @@ export default function HomePage() {
           </div>
         </div>
       </div>
+
+      {/* Twitter profile branding card */}
+      <div className="relative z-10 mt-6 w-full max-w-xl animate-fade-in">
+        <div className="liquid-glass-card p-4 sm:p-5 flex items-center justify-between gap-4 border border-blue-500/15 dark:border-blue-500/25 bg-blue-500/[0.02] dark:bg-blue-950/[0.05] rounded-3xl">
+          <div className="flex items-center gap-4">
+            {/* Avatar with glowing blue border */}
+            <div className="relative w-12 h-12 sm:w-14 sm:h-14 rounded-full p-[2px] bg-gradient-to-tr from-blue-600 to-cyan-400 shadow-md shadow-blue-500/15 flex-shrink-0">
+              <img 
+                src="https://unavatar.io/twitter/0x_zax" 
+                alt="0x_zax Avatar" 
+                className="w-full h-full rounded-full object-cover border border-white/10"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = "/base.png"
+                }}
+              />
+            </div>
+            {/* Text details */}
+            <div className="text-left">
+              <div className="flex items-center gap-1.5 text-[8px] sm:text-[9px] tracking-[0.12em] font-extrabold text-[var(--text-secondary)]/80 uppercase">
+                <span className="w-4 h-[1px] bg-[var(--text-secondary)]/40" />
+                This Site Built By
+              </div>
+              <h4 className="text-sm sm:text-md font-black text-blue-600 dark:text-blue-400 tracking-tight mt-0.5">
+                0x_zax
+              </h4>
+              <p className="text-[10px] sm:text-[11px] text-[var(--text-secondary)]/90 font-medium mt-0.5">
+                Follow for <span className="text-blue-500 dark:text-blue-400 font-bold">more Web3 content</span> 🚀
+              </p>
+            </div>
+          </div>
+
+          {/* Follow Button */}
+          <a
+            href="https://x.com/0x_zax"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-shrink-0 bg-gradient-to-r from-blue-700 via-blue-600 to-blue-500 hover:from-blue-800 hover:to-blue-600 text-white font-extrabold text-[10px] sm:text-[11px] uppercase tracking-wider px-4 sm:px-5 h-9 sm:h-10 rounded-full flex items-center gap-1.5 shadow-md shadow-blue-500/15 hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-200"
+          >
+            <svg className="h-3.5 w-3.5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+            </svg>
+            Follow
+          </a>
+        </div>
+      </div>
     </div>
   )
 }
