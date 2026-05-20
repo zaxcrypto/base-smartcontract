@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { Rocket, LayoutDashboard, Zap, ShieldCheck, Sparkles } from 'lucide-react'
+import { ShieldCheck } from 'lucide-react'
 import { PortalBackground } from '@/components/PortalBackground'
 
 export default function HomePage() {
@@ -10,33 +10,40 @@ export default function HomePage() {
       {/* Immersive 3D Space Portal Ellipse Line Background */}
       <PortalBackground />
       
-      {/* Soft Ambient Spot Glow */}
+      {/* Soft Ambient Spot Glows for Rich Static Color Depth */}
       <div className="ambient-glow" />
+      <div className="absolute top-[10%] left-[5%] w-80 h-80 rounded-full bg-indigo-500/8 dark:bg-indigo-500/12 blur-[100px] pointer-events-none z-0" />
+      <div className="absolute bottom-[10%] right-[5%] w-96 h-96 rounded-full bg-cyan-500/8 dark:bg-cyan-500/12 blur-[120px] pointer-events-none z-0" />
 
       {/* Floating Curved Liquid Glass Window (z-10 stacking foreground) */}
-      <div className="relative z-10 liquid-glass-card px-6 sm:px-12 py-16 sm:py-20 max-w-xl w-full flex flex-col items-center justify-center text-center">
+      <div className="relative z-10 liquid-glass-card px-6 sm:px-12 py-16 sm:py-20 max-w-xl w-full flex flex-col items-center justify-center text-center overflow-hidden">
         
-        {/* Architectural corner intersection marks */}
-        <div className="absolute -top-2.5 -left-2 text-xs font-light text-[var(--text-muted)] select-none opacity-40 font-mono">+</div>
-        <div className="absolute -top-2.5 -right-2 text-xs font-light text-[var(--text-muted)] select-none opacity-40 font-mono">+</div>
-        <div className="absolute -bottom-3.5 -left-2 text-xs font-light text-[var(--text-muted)] select-none opacity-40 font-mono">+</div>
-        <div className="absolute -bottom-3.5 -right-2 text-xs font-light text-[var(--text-muted)] select-none opacity-40 font-mono">+</div>
+        {/* Precision Top Color Accent Line */}
+        <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-blue-600 via-indigo-500 to-cyan-500" />
 
-        <div className="w-full space-y-8 animate-fade-in">
+        {/* Architectural corner intersection marks */}
+        <div className="absolute top-3 left-2.5 text-xs font-light text-[var(--text-muted)] select-none opacity-40 font-mono">+</div>
+        <div className="absolute top-3 right-2.5 text-xs font-light text-[var(--text-muted)] select-none opacity-40 font-mono">+</div>
+        <div className="absolute bottom-3.5 left-2.5 text-xs font-light text-[var(--text-muted)] select-none opacity-40 font-mono">+</div>
+        <div className="absolute bottom-3.5 right-2.5 text-xs font-light text-[var(--text-muted)] select-none opacity-40 font-mono">+</div>
+
+        <div className="w-full space-y-8 stage-container relative z-10">
           {/* Network Capsule */}
           <div className="flex justify-center">
-            <div className="premium-badge premium-badge-blue inline-flex items-center gap-1.5 py-1 px-3">
+            <div className="premium-badge premium-badge-blue inline-flex items-center gap-1.5 py-1 px-3 border-blue-500/20 bg-blue-500/5">
               <img src="/base.png" alt="Base Logo" className="h-3.5 w-3.5 object-contain mr-0.5" />
-              <span>Base Mainnet Live</span>
+              <span className="font-extrabold tracking-wider uppercase text-[10px]">Base Mainnet Live</span>
             </div>
           </div>
 
           {/* Master Title */}
           <div className="space-y-4">
-            <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[var(--text-primary)] leading-[1.15]">
+            <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[var(--text-primary)] leading-[1.2]">
               Launch ERC-20 Tokens
               <br />
-              <span className="text-[var(--accent-color)]">on Base Mainnet</span>
+              <span className="bg-gradient-to-r from-blue-600 via-indigo-500 to-blue-500 dark:from-blue-400 dark:via-indigo-400 dark:to-cyan-400 bg-clip-text text-transparent">
+                on Base Mainnet
+              </span>
             </h1>
             
             {/* Description */}
@@ -45,35 +52,32 @@ export default function HomePage() {
             </p>
           </div>
 
-          {/* Luxury CTA Deck */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 max-w-xl mx-auto w-full pt-2">
+          {/* Luxury CTA Deck (Equal Width/Height Buttons, Emoji & Icon Free) */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 max-w-md mx-auto w-full pt-2">
             <Link
               href="/deploy"
-              className="premium-btn-primary w-full sm:w-auto px-6 py-3.5 flex items-center justify-center gap-2 hover:-translate-y-0.5 transition-all shadow-md shadow-blue-500/10 hover:shadow-lg hover:shadow-blue-500/20 text-xs"
+              className="premium-btn-primary w-full sm:w-[136px] h-[46px] rounded-xl flex items-center justify-center text-4xs uppercase tracking-widest font-black transition-all duration-200 shadow-md shadow-blue-500/10 hover:shadow-lg hover:shadow-blue-500/20"
             >
-              <Rocket className="h-4.5 w-4.5" />
-              Deploy Contract
+              Deploy Token
             </Link>
             
             <Link
               href="/dashboard"
-              className="premium-btn-secondary w-full sm:w-auto px-5 py-3.5 flex items-center justify-center gap-2 text-xs"
+              className="premium-btn-secondary w-full sm:w-[136px] h-[46px] rounded-xl flex items-center justify-center text-4xs uppercase tracking-widest font-black transition-all duration-200 border border-[var(--border-secondary)] bg-[var(--bg-secondary)] hover:bg-[var(--bg-tertiary)] text-[var(--text-primary)]"
             >
-              <LayoutDashboard className="h-4.5 w-4.5 text-[var(--text-secondary)]" />
               Dashboard
             </Link>
 
             <Link
               href="/stats"
-              className="premium-btn-secondary w-full sm:w-auto px-5 py-3.5 flex items-center justify-center gap-2 text-xs border-[var(--accent-color)]/25 bg-[var(--accent-soft)] hover:bg-blue-50 dark:hover:bg-blue-950/20"
+              className="premium-btn-secondary w-full sm:w-[136px] h-[46px] rounded-xl flex items-center justify-center text-4xs uppercase tracking-widest font-black transition-all duration-200 border border-[var(--accent-color)]/25 bg-[var(--accent-soft)] hover:bg-blue-50 dark:hover:bg-blue-950/20 text-[var(--text-primary)]"
             >
-              <Sparkles className="h-4.5 w-4.5 text-[var(--accent-color)] animate-pulse" />
               Wallet Stats
             </Link>
           </div>
 
           {/* Bottom Security Footer */}
-          <div className="flex items-center justify-center gap-1.5 text-[10px] uppercase tracking-widest text-[var(--text-muted)] font-bold pt-10 border-t border-[var(--border-primary)] max-w-xs mx-auto">
+          <div className="flex items-center justify-center gap-1.5 text-[9px] uppercase tracking-widest text-[var(--text-muted)] font-black pt-10 border-t border-[var(--border-primary)] max-w-xs mx-auto">
             <ShieldCheck className="h-3.5 w-3.5 text-green-500" />
             Zero Custom Exploit Surfaces
           </div>
